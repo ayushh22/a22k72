@@ -1,3 +1,4 @@
+import { typographyPlugin } from "./src/lib/typography";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -34,10 +35,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("daisyui")],
-  daisyui: {
-    prefix: "daisy-",
-  },
+  plugins: [require("tailwindcss-animate"), typographyPlugin],
 };
 
 export default config;
