@@ -8,11 +8,21 @@ import { gsap } from "gsap";
 
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import type { ResolvedNavigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import type { AppLocale } from "@/lib/i18n";
-import { getAlternateLocale, rewritePathWithLocale } from "@/lib/i18n";
+import { appLocales, rewritePathWithLocale } from "@/lib/i18n";
 import { isExternalHref, isRouteActive } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
@@ -49,12 +59,6 @@ export function MobileNav({ locale, navigation, className }: MobileNavProps) {
   const pathname = usePathname();
   const [open, setOpen] = React.useState(false);
   const overlayRef = React.useRef<HTMLDivElement | null>(null);
-  const alternateLocale = getAlternateLocale(locale);
-
-  const alternateHref = React.useMemo(
-    () => rewritePathWithLocale(pathname, locale, alternateLocale),
-    [alternateLocale, locale, pathname]
-  );
 
   const ctaIsExternal =
     navigation.cta.external ?? isExternalHref(navigation.cta.href);
@@ -192,17 +196,31 @@ export function MobileNav({ locale, navigation, className }: MobileNavProps) {
                     })}
                   </nav>
                   <div className="flex flex-col gap-4">
-                    <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-foreground/50">
-                      <span>{locale.toUpperCase()}</span>
-                      <Link
-                        href={alternateHref}
-                        onClick={closeMenu}
-                        className="text-foreground"
-                        data-mobile-nav-link
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          className="w-full justify-start text-xs uppercase tracking-[0.3em]"
+                          data-mobile-nav-link
+                        >
+                          {locale.toUpperCase()}
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent
+                        align="start"
+                        className="w-[var(--radix-dropdown-menu-trigger-width)]"
                       >
-                        {alternateLocale.toUpperCase()}
-                      </Link>
-                    </div>
+                        {appLocales.map((l) => (
+                          <DropdownMenuItem key={l} asChild>
+                            <Link
+                              href={rewritePathWithLocale(pathname, locale, l)}
+                            >
+                              {l.toUpperCase()}
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                     <nav
                       aria-label="Mobile secondary navigation"
                       className="flex flex-col gap-3 text-sm uppercase tracking-[0.2em] text-foreground/70"

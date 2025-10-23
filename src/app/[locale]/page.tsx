@@ -21,6 +21,14 @@ const HOME_COPY = {
       "Nous collaborons avec des équipes ambitieuses afin de créer des plateformes de marque, des produits numériques et des campagnes qui marquent la culture.",
     cta: "Découvrir nos projets",
   },
+  de: {
+    eyebrow: "Preisgekrönte Kreativagentur",
+    title:
+      "Strategiegeführte Erlebnisse, die Marken unübersehbar machen.",
+    subtitle:
+      "Wir arbeiten mit ambitionierten Teams zusammen, um Markenplattformen, digitale Produkte und Kampagnen zu entwickeln, die kulturelle Relevanz fördern.",
+    cta: "Entdecken Sie unsere Arbeit",
+  },
 } as const;
 
 type HomeCopy = (typeof HOME_COPY)[keyof typeof HOME_COPY];
