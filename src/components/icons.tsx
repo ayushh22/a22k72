@@ -26,6 +26,7 @@ import {
   Twitter,
   User,
   X,
+  Languages,
 } from "lucide-react";
 
 export const Icons = {
@@ -56,4 +57,5 @@ export const Icons = {
   sun: SunMedium,
   moon: Moon,
   laptop: Laptop,
+  languages: Languages,
 };

@@ -40,6 +40,7 @@ const NAVIGATION_BLUEPRINT: NavigationDefinition = {
       label: {
         en: "Work",
         fr: "Projets",
+        de: "Projekte",
       },
       href: "/work",
     },
@@ -48,6 +49,7 @@ const NAVIGATION_BLUEPRINT: NavigationDefinition = {
       label: {
         en: "Services",
         fr: "Services",
+        de: "Dienstleistungen",
       },
       href: "/services",
     },
@@ -56,6 +58,7 @@ const NAVIGATION_BLUEPRINT: NavigationDefinition = {
       label: {
         en: "Culture",
         fr: "Culture",
+        de: "Kultur",
       },
       href: "/culture",
     },
@@ -64,6 +67,7 @@ const NAVIGATION_BLUEPRINT: NavigationDefinition = {
       label: {
         en: "Journal",
         fr: "Journal",
+        de: "Tagebuch",
       },
       href: "/journal",
     },
@@ -74,6 +78,7 @@ const NAVIGATION_BLUEPRINT: NavigationDefinition = {
       label: {
         en: "Careers",
         fr: "Carrières",
+        de: "Karriere",
       },
       href: "/careers",
     },
@@ -83,6 +88,7 @@ const NAVIGATION_BLUEPRINT: NavigationDefinition = {
     label: {
       en: "Start a project",
       fr: "Démarrer un projet",
+      de: "Starten Sie ein Projekt",
     },
     href: "/contact",
   },

@@ -1,4 +1,4 @@
-export const appLocales = ["en", "fr"] as const;
+export const appLocales = ["en", "fr", "de"] as const;
 
 export type AppLocale = (typeof appLocales)[number];
 
@@ -28,8 +28,6 @@ export function buildLocalizedHref(path: string, locale: AppLocale): string {
   return `/${locale}/${normalized}`;
 }
 
-export function getAlternateLocale(current: AppLocale): AppLocale {
-  return appLocales.find((locale) => locale !== current) ?? defaultLocale;
 }
 
 export function rewritePathWithLocale(

@@ -5,14 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 
-import { Icons } from "@/components/icons";
+import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { MainNav } from "@/components/main-nav";
 import { MobileNav } from "@/components/mobile-nav";
 import { Button } from "@/components/ui/button";
 import type { ResolvedNavigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import type { AppLocale } from "@/lib/i18n";
-import { getAlternateLocale, rewritePathWithLocale } from "@/lib/i18n";
 import { isExternalHref, isRouteActive } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
@@ -29,12 +28,6 @@ export function SiteHeader({ locale, navigation }: SiteHeaderProps) {
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 32);
   });
-
-  const alternateLocale = getAlternateLocale(locale);
-  const alternateHref = React.useMemo(
-    () => rewritePathWithLocale(pathname, locale, alternateLocale),
-    [alternateLocale, locale, pathname]
-  );
 
   const ctaIsExternal =
     navigation.cta.external ?? isExternalHref(navigation.cta.href);
@@ -117,12 +110,7 @@ export function SiteHeader({ locale, navigation }: SiteHeaderProps) {
                 aria-hidden="true"
               />
             )}
-            <Link
-              href={alternateHref}
-              className="transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            >
-              {alternateLocale.toUpperCase()}
-            </Link>
+            <LanguageSwitcher locale={locale} />
           </nav>
 
           <div className="hidden md:inline-flex">
